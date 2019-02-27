@@ -1,0 +1,32 @@
+import { ISignalRConnection } from './i.signalr.connection';
+import { Observable } from 'rxjs';
+import { BroadcastEventListener } from '../eventing/broadcast.event.listener';
+import { ConnectionStatus } from './connection.status';
+import { NgZone } from '@angular/core';
+import { SignalRConfiguration } from '../signalr.configuration';
+import { HubConnection } from '@aspnet/signalr';
+export declare type CallbackFn = (...args: any[]) => void;
+export declare class SignalRConnection implements ISignalRConnection {
+    private _status;
+    private _errors;
+    private _jConnection;
+    private _zone;
+    private _configuration;
+    private _listeners;
+    constructor(jConnection: HubConnection, zone: NgZone, configuration: SignalRConfiguration);
+    readonly errors: Observable<any>;
+    readonly status: Observable<ConnectionStatus>;
+    start(): Promise<ISignalRConnection>;
+    stop(): void;
+    invoke(method: string, ...parameters: any[]): Promise<any>;
+    listen<T>(listener: BroadcastEventListener<T>): void;
+    stopListening<T>(listener: BroadcastEventListener<T>): void;
+    listenFor<T>(event: string): BroadcastEventListener<T>;
+    listenForRaw(event: string): BroadcastEventListener<any[]>;
+    private setListener;
+    private convertTransports;
+    private wireUpStatusEventsAsObservable;
+    private onBroadcastEventReceived;
+    private log;
+    private run;
+}
