@@ -646,9 +646,9 @@
                 function () {
                     /** @type {?} */
                     var connectionStatus = null;
-                    if (change.hasOwnProperty('newState'))
+                    if (change && change.hasOwnProperty('newState'))
                         connectionStatus = new ConnectionStatus(change.newState);
-                    else if (change.hasOwnProperty('message')) // Probably an error
+                    else if (!change || change.hasOwnProperty('message')) // Probably an error
                         connectionStatus = ConnectionStatuses.disconnected;
                     sStatus.next(connectionStatus);
                 }), _this._configuration.executeStatusChangeInZone);
