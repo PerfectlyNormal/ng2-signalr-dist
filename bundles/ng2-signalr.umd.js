@@ -869,6 +869,7 @@
             this.executeErrorsInZone = false;
             this.executeStatusChangeInZone = true;
             this.pingInterval = 300000;
+            this.httpConnectionOptions = null;
         }
         return SignalRConfiguration;
     }());
@@ -897,7 +898,7 @@
             // create connection object
             /** @type {?} */
             var jConnection = new signalr.HubConnectionBuilder()
-                .withUrl(configuration.url)
+                .withUrl(configuration.url, configuration.httpConnectionOptions)
                 .configureLogging(configuration.logging)
                 .build();
             // FIXME: jConnection.qs = configuration.qs;
@@ -960,6 +961,7 @@
             var merged = new SignalRConfiguration();
             merged.hubName = overrides.hubName || this._configuration.hubName;
             merged.url = overrides.url || this._configuration.url;
+            merged.httpConnectionOptions = overrides.httpConnectionOptions || this._configuration.httpConnectionOptions;
             merged.qs = overrides.qs || this._configuration.qs;
             merged.logging = this._configuration.logging;
             merged.jsonp = overrides.jsonp || this._configuration.jsonp;

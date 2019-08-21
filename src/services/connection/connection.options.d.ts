@@ -1,4 +1,5 @@
 import { ConnectionTransport } from './connection.transport';
+import { IHttpConnectionOptions } from '@aspnet/signalr';
 export interface IConnectionOptions {
     /** connection url to the SignalR service. */
     url?: string;
@@ -20,4 +21,5 @@ export interface IConnectionOptions {
     executeErrorsInZone?: boolean;
     /** Allows you to run the status change in callback outside ngZone */
     executeStatusChangeInZone?: boolean;
+    httpConnectionOptions?: IHttpConnectionOptions;
 }

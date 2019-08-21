@@ -17,6 +17,7 @@ var SignalRConfiguration = /** @class */ (function () {
         this.executeErrorsInZone = false;
         this.executeStatusChangeInZone = true;
         this.pingInterval = 300000;
+        this.httpConnectionOptions = null;
     }
     return SignalRConfiguration;
 }());
@@ -77,5 +78,10 @@ if (false) {
      * @type {?}
      */
     SignalRConfiguration.prototype.executeStatusChangeInZone;
+    /**
+     * Allows you to pass extra options to the connection builder, for example passing in an accessTokenFactory
+     * @type {?}
+     */
+    SignalRConfiguration.prototype.httpConnectionOptions;
 }
 //# sourceMappingURL=signalr.configuration.js.map

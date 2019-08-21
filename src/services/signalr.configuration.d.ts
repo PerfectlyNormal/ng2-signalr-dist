@@ -1,6 +1,6 @@
 import { ConnectionTransport } from './connection/connection.transport';
 import { IConnectionOptions } from './connection/connection.options';
-import { LogLevel } from '@aspnet/signalr';
+import { LogLevel, IHttpConnectionOptions } from '@aspnet/signalr';
 export declare class SignalRConfiguration implements IConnectionOptions {
     /** connection url to the SignalR service */
     url: string;
@@ -24,5 +24,7 @@ export declare class SignalRConfiguration implements IConnectionOptions {
     executeErrorsInZone?: boolean;
     /** Allows you to run the status change in callback outside ngZone */
     executeStatusChangeInZone?: boolean;
+    /** Allows you to pass extra options to the connection builder, for example passing in an accessTokenFactory */
+    httpConnectionOptions?: IHttpConnectionOptions;
     constructor();
 }

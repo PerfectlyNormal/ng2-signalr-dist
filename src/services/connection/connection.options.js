@@ -57,5 +57,7 @@ if (false) {
      * @type {?|undefined}
      */
     IConnectionOptions.prototype.executeStatusChangeInZone;
+    /** @type {?|undefined} */
+    IConnectionOptions.prototype.httpConnectionOptions;
 }
 //# sourceMappingURL=connection.options.js.map
