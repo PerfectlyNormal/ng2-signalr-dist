@@ -4,8 +4,8 @@
  */
 import { ConnectionTransports } from './connection/connection.transports';
 import { LogLevel } from '@aspnet/signalr';
-var SignalRConfiguration = /** @class */ (function () {
-    function SignalRConfiguration() {
+export class SignalRConfiguration {
+    constructor() {
         this.hubName = null;
         this.logging = LogLevel.Error;
         this.qs = null;
@@ -19,9 +19,7 @@ var SignalRConfiguration = /** @class */ (function () {
         this.pingInterval = 300000;
         this.httpConnectionOptions = null;
     }
-    return SignalRConfiguration;
-}());
-export { SignalRConfiguration };
+}
 if (false) {
     /**
      * connection url to the SignalR service

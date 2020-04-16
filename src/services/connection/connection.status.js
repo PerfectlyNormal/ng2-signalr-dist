@@ -2,60 +2,46 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var ConnectionStatus = /** @class */ (function () {
-    function ConnectionStatus(value) {
+export class ConnectionStatus {
+    /**
+     * @param {?} value
+     */
+    constructor(value) {
         if (value == null || value < 0) {
             throw new Error("Failed to create ConnectionStatus. Argument 'name' can not be null or empty.");
         }
         this._value = value;
     }
-    Object.defineProperty(ConnectionStatus.prototype, "value", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionStatus.prototype, "name", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionStatus.names[Number.parseInt(this._value.toString())];
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @return {?}
      */
-    ConnectionStatus.prototype.toString = /**
+    get value() {
+        return this._value;
+    }
+    /**
      * @return {?}
      */
-    function () {
+    get name() {
+        return ConnectionStatus.names[Number.parseInt(this._value.toString(), 10)];
+    }
+    /**
+     * @return {?}
+     */
+    toString() {
         return this.name;
-    };
+    }
     /**
      * @param {?} other
      * @return {?}
      */
-    ConnectionStatus.prototype.equals = /**
-     * @param {?} other
-     * @return {?}
-     */
-    function (other) {
+    equals(other) {
         if (other == null) {
             return false;
         }
         return this._value === other.value;
-    };
-    ConnectionStatus.names = ['connecting', 'connected', 'reconnecting', '', 'disconnected'];
-    return ConnectionStatus;
-}());
-export { ConnectionStatus };
+    }
+}
+ConnectionStatus.names = ['connecting', 'connected', 'reconnecting', '', 'disconnected'];
 if (false) {
     /**
      * @type {?}

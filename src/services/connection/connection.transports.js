@@ -4,69 +4,45 @@
  */
 import { ConnectionTransport } from './connection.transport';
 // @dynamic
-var ConnectionTransports = /** @class */ (function () {
-    function ConnectionTransports() {
+export class ConnectionTransports {
+    /**
+     * @return {?}
+     */
+    static get foreverFrame() {
+        return ConnectionTransports.transports[0];
     }
-    Object.defineProperty(ConnectionTransports, "foreverFrame", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionTransports.transports[0];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionTransports, "longPolling", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionTransports.transports[1];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionTransports, "serverSentEvents", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionTransports.transports[2];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionTransports, "webSockets", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionTransports.transports[3];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionTransports, "auto", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionTransports.transports[4];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ConnectionTransports.transports = [
-        new ConnectionTransport("foreverFrame"),
-        new ConnectionTransport("longPolling"),
-        new ConnectionTransport("serverSentEvents"),
-        new ConnectionTransport("webSockets"),
-        new ConnectionTransport("auto"),
-    ];
-    return ConnectionTransports;
-}());
-export { ConnectionTransports };
+    /**
+     * @return {?}
+     */
+    static get longPolling() {
+        return ConnectionTransports.transports[1];
+    }
+    /**
+     * @return {?}
+     */
+    static get serverSentEvents() {
+        return ConnectionTransports.transports[2];
+    }
+    /**
+     * @return {?}
+     */
+    static get webSockets() {
+        return ConnectionTransports.transports[3];
+    }
+    /**
+     * @return {?}
+     */
+    static get auto() {
+        return ConnectionTransports.transports[4];
+    }
+}
+ConnectionTransports.transports = [
+    new ConnectionTransport("foreverFrame"),
+    new ConnectionTransport("longPolling"),
+    new ConnectionTransport("serverSentEvents"),
+    new ConnectionTransport("webSockets"),
+    new ConnectionTransport("auto"),
+];
 if (false) {
     /**
      * @type {?}

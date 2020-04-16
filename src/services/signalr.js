@@ -6,8 +6,12 @@ import { NgZone, Injectable } from '@angular/core';
 import { HubConnectionBuilder } from '@aspnet/signalr';
 import { SignalRConfiguration } from './signalr.configuration';
 import { SignalRConnection } from './connection/signalr.connection';
-var SignalR = /** @class */ (function () {
-    function SignalR(configuration, zone) {
+export class SignalR {
+    /**
+     * @param {?} configuration
+     * @param {?} zone
+     */
+    constructor(configuration, zone) {
         this._configuration = configuration;
         this._zone = zone;
     }
@@ -15,17 +19,13 @@ var SignalR = /** @class */ (function () {
      * @param {?=} options
      * @return {?}
      */
-    SignalR.prototype.createConnection = /**
-     * @param {?=} options
-     * @return {?}
-     */
-    function (options) {
+    createConnection(options) {
         /** @type {?} */
-        var configuration = this.merge(options ? options : {});
+        const configuration = this.merge(options ? options : {});
         this.logConfiguration(configuration);
         // create connection object
         /** @type {?} */
-        var jConnection = new HubConnectionBuilder()
+        const jConnection = new HubConnectionBuilder()
             .withUrl(configuration.url, configuration.httpConnectionOptions)
             .configureLogging(configuration.logging)
             .build();
@@ -34,59 +34,45 @@ var SignalR = /** @class */ (function () {
         jConnection.on('noOp', (/**
          * @return {?}
          */
-        function () { }));
+        () => { }));
         return new SignalRConnection(jConnection, this._zone, configuration);
-    };
+    }
     /**
      * @param {?=} options
      * @return {?}
      */
-    SignalR.prototype.connect = /**
-     * @param {?=} options
-     * @return {?}
-     */
-    function (options) {
+    connect(options) {
         return this.createConnection(options).start();
-    };
+    }
     /**
      * @private
      * @param {?} configuration
      * @return {?}
      */
-    SignalR.prototype.logConfiguration = /**
-     * @private
-     * @param {?} configuration
-     * @return {?}
-     */
-    function (configuration) {
+    logConfiguration(configuration) {
         try {
             /** @type {?} */
-            var serializedQs = JSON.stringify(configuration.qs);
+            const serializedQs = JSON.stringify(configuration.qs);
             /** @type {?} */
-            var serializedTransport = JSON.stringify(configuration.transport);
+            const serializedTransport = JSON.stringify(configuration.transport);
             if (configuration.logging) {
-                console.log("Creating connecting with...");
-                console.log("configuration:[url: '" + configuration.url + "'] ...");
-                console.log("configuration:[hubName: '" + configuration.hubName + "'] ...");
-                console.log("configuration:[qs: '" + serializedQs + "'] ...");
-                console.log("configuration:[transport: '" + serializedTransport + "'] ...");
+                console.log(`Creating connecting with...`);
+                console.log(`configuration:[url: '${configuration.url}'] ...`);
+                console.log(`configuration:[hubName: '${configuration.hubName}'] ...`);
+                console.log(`configuration:[qs: '${serializedQs}'] ...`);
+                console.log(`configuration:[transport: '${serializedTransport}'] ...`);
             }
         }
         catch (err) { /* */ }
-    };
+    }
     /**
      * @private
      * @param {?} overrides
      * @return {?}
      */
-    SignalR.prototype.merge = /**
-     * @private
-     * @param {?} overrides
-     * @return {?}
-     */
-    function (overrides) {
+    merge(overrides) {
         /** @type {?} */
-        var merged = new SignalRConfiguration();
+        const merged = new SignalRConfiguration();
         merged.hubName = overrides.hubName || this._configuration.hubName;
         merged.url = overrides.url || this._configuration.url;
         merged.httpConnectionOptions = overrides.httpConnectionOptions || this._configuration.httpConnectionOptions;
@@ -100,18 +86,16 @@ var SignalR = /** @class */ (function () {
         merged.executeStatusChangeInZone = overrides.executeStatusChangeInZone || this._configuration.executeStatusChangeInZone;
         merged.pingInterval = overrides.pingInterval || this._configuration.pingInterval;
         return merged;
-    };
-    SignalR.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    SignalR.ctorParameters = function () { return [
-        { type: SignalRConfiguration },
-        { type: NgZone }
-    ]; };
-    return SignalR;
-}());
-export { SignalR };
+    }
+}
+SignalR.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+SignalR.ctorParameters = () => [
+    { type: SignalRConfiguration },
+    { type: NgZone }
+];
 if (false) {
     /**
      * @type {?}

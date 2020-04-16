@@ -4,58 +4,38 @@
  */
 import { ConnectionStatus } from './connection.status';
 // @dynamic
-var ConnectionStatuses = /** @class */ (function () {
-    function ConnectionStatuses() {
+export class ConnectionStatuses {
+    /**
+     * @return {?}
+     */
+    static get connecting() {
+        return ConnectionStatuses.statuses[0];
     }
-    Object.defineProperty(ConnectionStatuses, "connecting", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionStatuses.statuses[0];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionStatuses, "connected", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionStatuses.statuses[1];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionStatuses, "reconnecting", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionStatuses.statuses[2];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ConnectionStatuses, "disconnected", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return ConnectionStatuses.statuses[3];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ConnectionStatuses.statuses = [
-        new ConnectionStatus(0),
-        new ConnectionStatus(1),
-        new ConnectionStatus(2),
-        new ConnectionStatus(4)
-    ];
-    return ConnectionStatuses;
-}());
-export { ConnectionStatuses };
+    /**
+     * @return {?}
+     */
+    static get connected() {
+        return ConnectionStatuses.statuses[1];
+    }
+    /**
+     * @return {?}
+     */
+    static get reconnecting() {
+        return ConnectionStatuses.statuses[2];
+    }
+    /**
+     * @return {?}
+     */
+    static get disconnected() {
+        return ConnectionStatuses.statuses[3];
+    }
+}
+ConnectionStatuses.statuses = [
+    new ConnectionStatus(0),
+    new ConnectionStatus(1),
+    new ConnectionStatus(2),
+    new ConnectionStatus(4)
+];
 if (false) {
     /**
      * @type {?}
